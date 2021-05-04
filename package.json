@@ -1,0 +1,22 @@
+{
+  "name": "moviereviews",
+  "version": "1.0.0",
+  "description": "For reviewing the movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samiran04/Movie-Reviews.git"
+  },
+  "author": "Samiran Roy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samiran04/Movie-Reviews/issues"
+  },
+  "homepage": "https://github.com/Samiran04/Movie-Reviews#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
