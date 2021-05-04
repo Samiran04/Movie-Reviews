@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/Samiran04/Movie-Reviews#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   }
 }
