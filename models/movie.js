@@ -12,7 +12,11 @@ const movieSchema = new mongoose.Schema({
         }
     ],
     year: {
-        type: Date,
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
         required: true
     }
 }, {timestamps: true});
