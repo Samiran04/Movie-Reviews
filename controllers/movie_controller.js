@@ -28,7 +28,22 @@ module.exports.create = async function(req, res){
 
         return res.redirect('back');
     }catch(err){
-        console.log('*******Error in movie controller', err);
+        console.log('*******Error in movie controller create', err);
+        return;
+    }
+}
+
+module.exports.openMovie = async function(req, res){
+    try{
+        let movie = await Movie.findById(req.query.id);
+        let reviews = movie.reviews;
+
+        return res.render('reviews_section', {
+            reviews: reviews,
+            name: movie.name
+        });
+    }catch(err){
+        console.log('*******Error in movie controller open movie', err);
         return;
     }
 }
