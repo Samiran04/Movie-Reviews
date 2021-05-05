@@ -7,6 +7,8 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalPassport = require('./config/passport_local_strategy');
 
+const MongoDBStore = require('connect-mongodb-session')(session);
+
 app.use(express.urlencoded());
 
 app.set('view engine', 'ejs');
@@ -19,7 +21,11 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100)
-    }
+    },
+    store : new MongoDBStore({
+        uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+        collection: 'mySessions'
+      })
     }
 ));
 

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Samiran04/Movie-Reviews#readme",
   "dependencies": {
+    "connect-mongo": "^4.4.1",
+    "connect-mongodb-session": "^2.4.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.12.7",
