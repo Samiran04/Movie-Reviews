@@ -1,10 +1,13 @@
 let Movie = require('../models/movie');
+let Review = require('../models/review');
 
 module.exports.home = async function(req, res){
 
     let email, movies;
 
     movies = await Movie.find({});
+
+    //await Review.findByIdAndDelete('60942350f29cd228648b6b00');
 
     if(req.user)
     {

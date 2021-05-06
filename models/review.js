@@ -6,6 +6,11 @@ const reviewSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    movie: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Movie',
+        required: true
+    },
     votes: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -17,6 +22,10 @@ const reviewSchema = new mongoose.Schema({
         required: true,
         enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+    },
+    content: {
+        type: String,
+        required: true
     }
 }, {timestamps: true});
 

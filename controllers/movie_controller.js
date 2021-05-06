@@ -35,12 +35,13 @@ module.exports.create = async function(req, res){
 
 module.exports.openMovie = async function(req, res){
     try{
-        let movie = await Movie.findById(req.query.id);
+        let movie = await Movie.findById(req.query.id).populate('reviews');
         let reviews = movie.reviews;
 
         return res.render('reviews_section', {
             reviews: reviews,
-            name: movie.name
+            name: movie.name,
+            movie: movie
         });
     }catch(err){
         console.log('*******Error in movie controller open movie', err);

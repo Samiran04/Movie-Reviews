@@ -1,11 +1,34 @@
+<p><a href="/users/destroy-session">Log Out</a></p>
+
 <h1><%= locals.name %></h1>
 
 <div>
     <ul>
         <% for(review of reviews){ %>
             <li>
-                <%= review.name %>
+                <p><%= review.content %></p>
             </li>
         <% } %>
     </ul>
 </div>
+
+<% if(locals.user){ %>
+    <div>
+        <form action="/review/add/?id=<%= locals.movie._id %>" method="POST">
+            <textarea name="content" cols="30" rows="10">Write Your Review Here...</textarea>
+            <select name="star">
+                <option value="10">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+<% } %>
