@@ -17,8 +17,6 @@ module.exports.create = async function(req, res){
             return res.redirect('back');
         }
 
-        console.log(currDate);
-
         movie = await Movie.create({
             name: req.body.name,
             year: req.body.year,

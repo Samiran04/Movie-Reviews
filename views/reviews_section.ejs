@@ -1,4 +1,5 @@
 <p><a href="/users/destroy-session">Log Out</a></p>
+<p><a href="/">Home</a></p>
 
 <h1><%= locals.name %></h1>
 
@@ -8,7 +9,8 @@
             <li>
                 <p>Rating: <%= review.star %></p>
                 <p><%= review.content %></p>
-                <% if(locals.user._id == review.user.id){ %>
+                <p>User: <%= review.user.name %></p>
+                <% if(locals.user && locals.user._id == review.user.id){ %>
                     <a href="/review/destroy/?id=<%= locals.movie._id %>&review=<%= review._id %>&userId=<%= review.user._id %>">X</a>
                 <% } %>
             </li>

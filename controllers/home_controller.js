@@ -7,6 +7,10 @@ module.exports.home = async function(req, res){
 
     movies = await Movie.find({});
 
+    movies = movies.sort((a, b) => {
+        return b.rating - a.rating;
+    });
+
     //await Review.findByIdAndDelete('60942350f29cd228648b6b00');
 
     if(req.user)

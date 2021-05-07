@@ -17,11 +17,9 @@ module.exports.addReview = async function(req, res){
             movie: req.query.id
         });
 
-        let movie = await Movie.findById(req.query.id);
-
-        movie.save();
-
-        movie.reviews.push(review._id);
+        let movie = await Movie.findByIdAndUpdate(req.query.id, {
+            $push: {reviews: review._id}
+        });
 
         movie = await Movie.findById(req.query.id).populate('reviews');
 

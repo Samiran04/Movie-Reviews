@@ -13,7 +13,10 @@
 <div>
     <ul>
         <% for(movie of movies){ %>
-            <li><a href="/movie/open-movie/?id=<%= movie._id %>"><%= movie.name %></a></li>
+            <li>
+                <p>Rating: <%= movie.rating %></p>
+                <a href="/movie/open-movie/?id=<%= movie._id %>"><%= movie.name %></a>
+            </li>
         <% } %>
     </ul>
 </div>
