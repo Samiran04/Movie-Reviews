@@ -6,7 +6,11 @@
     <ul>
         <% for(review of reviews){ %>
             <li>
+                <p>Rating: <%= review.star %></p>
                 <p><%= review.content %></p>
+                <% if(locals.user._id == review.user.id){ %>
+                    <a href="/review/destroy/?id=<%= locals.movie._id %>&review=<%= review._id %>&userId=<%= review.user._id %>">X</a>
+                <% } %>
             </li>
         <% } %>
     </ul>

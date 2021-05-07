@@ -35,7 +35,12 @@ module.exports.create = async function(req, res){
 
 module.exports.openMovie = async function(req, res){
     try{
-        let movie = await Movie.findById(req.query.id).populate('reviews');
+        let movie = await Movie.findById(req.query.id).populate({
+            path: 'reviews',
+            populate: {
+                path: 'user'
+            }
+        });
         let reviews = movie.reviews;
 
         return res.render('reviews_section', {
