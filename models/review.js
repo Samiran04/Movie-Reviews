@@ -11,12 +11,6 @@ const reviewSchema = new mongoose.Schema({
         ref: 'Movie',
         required: true
     },
-    votes: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
     star: {
         type: Number,
         required: true,
@@ -26,7 +20,13 @@ const reviewSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
-    }
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ]
 }, {timestamps: true});
 
 const Review = mongoose.model('Review', reviewSchema);

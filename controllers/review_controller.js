@@ -1,5 +1,6 @@
 const Review = require('../models/review');
 const Movie = require('../models/movie');
+const Like = require('../models/like');
 
 module.exports.addReview = async function(req, res){
     try{
@@ -57,6 +58,8 @@ module.exports.destroyReview = async function(req, res){
 
         await Review.findByIdAndDelete(req.query.review);
 
+        await Like.deleteMany({review: req.query.review});
+
         let movie = await Movie.findById(req.query.id).populate('reviews');
 
         let sum = 0, n = movie.reviews.length;
@@ -77,6 +80,32 @@ module.exports.destroyReview = async function(req, res){
 
     }catch(err){
         console.log('**********Error in destroy Review', err);
+        return;
+    }
+}
+
+module.exports.likeAction = async function(req, res){
+    try{
+        let like = await Like.findOne({review: req.query.review, user: req.query.user});
+        let review = await Review.findById(req.query.review).populate('likes');
+
+        if(!like)
+        {
+            like = await Like.create({review: req.query.review, user: req.query.user});
+            review.likes.push(like._id);
+        }
+        else
+        {
+            review.likes.pull(like._id);
+            await Like.findByIdAndDelete(like._id);
+        }
+
+        review.save();
+
+        return res.redirect('back');
+    }catch(err)
+    {
+        console.log('**********Error in like function', err);
         return;
     }
 }

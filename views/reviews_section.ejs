@@ -13,6 +13,11 @@
                 <% if(locals.user && locals.user._id == review.user.id){ %>
                     <a href="/review/destroy/?id=<%= locals.movie._id %>&review=<%= review._id %>&userId=<%= review.user._id %>">X</a>
                 <% } %>
+                <% if(locals.user){ %>
+                    <p><a href="/review/like/?review=<%= review._id %>&user=<%= locals.user._id %>">Like<%= review.likes.length %></a></p>
+                <% } else {%>
+                    <p>Like<%= review.likes.length %></p>
+                <% } %>
             </li>
         <% } %>
     </ul>

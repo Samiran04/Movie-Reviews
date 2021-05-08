@@ -36,6 +36,9 @@ module.exports.openMovie = async function(req, res){
         let movie = await Movie.findById(req.query.id).populate({
             path: 'reviews',
             populate: {
+                path: 'likes'
+            },
+            populate: {
                 path: 'user'
             }
         });
