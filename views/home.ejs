@@ -16,6 +16,14 @@
             <li>
                 <p>Rating: <%= movie.rating %></p>
                 <a href="/movie/open-movie/?id=<%= movie._id %>"><%= movie.name %></a>
+                <% if(locals.user && !movie.picture){ %>
+                    <form action="/movie/upload/?movieId=<%= movie._id %>&email=<%= locals.user.email %>" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="picture">
+                        <input type="submit" value="Update">
+                    </form>
+                <% } else if(movie.picture){ %>
+                    <img src="<%= movie.picture %>" alt="<%= movie.name %>" width="100">
+                <% } %>
             </li>
         <% } %>
     </ul>

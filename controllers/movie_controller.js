@@ -54,3 +54,29 @@ module.exports.openMovie = async function(req, res){
         return;
     }
 }
+
+module.exports.update = async function(req, res){
+    try{
+        if(req.query.email == 'samiranroy0407@gmail.com')
+        {
+            let movie = await Movie.findById(req.query.movieId);
+            Movie.uploadPicture(req, res, function(err){
+                if(err){console.log('****Multer error'); return}
+
+                if(req.file)
+                {
+                    movie.picture = Movie.picturePath + '/' + req.file.filename;
+                }
+
+                console.log(movie.picture);
+
+                movie.save();
+
+                return res.redirect('back');
+            })
+        }
+    }catch(err){
+        console.log('*********Error in Movie upload', err);
+        return;
+    }
+}
