@@ -25,7 +25,13 @@ const movieSchema = new mongoose.Schema({
     },
     picture: {
         type: String
-    }
+    },
+    genre: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Genre'
+        }
+    ]
 }, {timestamps: true});
 
 var storage = multer.diskStorage({

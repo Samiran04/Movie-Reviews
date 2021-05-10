@@ -5,6 +5,9 @@
         <form action="/movie/create" method="POST">
             <input type="text" name="name" required placeholder="Name of Movie">
             <input type="text" name="year" required placeholder="Year">
+            <% for(let gen of locals.genres){ %>
+                <label ><%= gen %><input type="checkbox" name="genres" value="<%= gen %>"></label>
+            <% } %>
             <input type="submit" value="Create">
         </form>
     </div>

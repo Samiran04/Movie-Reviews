@@ -1,4 +1,5 @@
 const Movie = require('../models/movie');
+const Genre = require('../models/genre');
 
 module.exports.create = async function(req, res){
     try{
@@ -21,8 +22,20 @@ module.exports.create = async function(req, res){
             name: req.body.name,
             year: req.body.year,
             reviews: [],
-            rating: 0
+            rating: 0,
+            genre: []
         });
+
+        for(let genre of req.body.genres)
+        {
+            let gen = await Genre.findOneAndUpdate({name: genre}, {
+                $push: {movies: movie._id}
+            });
+
+            movie.genre.push(gen._id);
+        }
+
+        movie.save();
 
         return res.redirect('back');
     }catch(err){
