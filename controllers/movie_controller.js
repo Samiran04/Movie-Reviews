@@ -32,6 +32,16 @@ module.exports.create = async function(req, res){
                 $push: {movies: movie._id}
             });
 
+            if(gen == null)
+            {
+                gen = await Genre.findOneAndUpdate({name: req.body.genres}, {
+                    $push: {movies: movie._id}
+                });
+
+                movie.genre.push(gen._id);
+                break;
+            }
+
             movie.genre.push(gen._id);
         }
 
@@ -90,6 +100,40 @@ module.exports.update = async function(req, res){
         }
     }catch(err){
         console.log('*********Error in Movie upload', err);
+        return;
+    }
+}
+
+module.exports.filter = async function(req, res){
+    try{
+        let movies = [];
+
+        for(let genreName of req.body.genres)
+        {
+            let genre = await Genre.findOne({name: genreName}).populate('movies');
+
+            if(genre == null)
+            {
+                let genre = await Genre.findOne({name: req.body.genres}).populate('movies');
+                movies = genre.movies;
+                break;
+            }
+
+            movies = movies.concat(genre.movies);
+        }
+
+        movies = movies.sort((a, b) => {
+            return b.rating - a.rating;
+        });
+
+        //console.log(movies);
+
+        return res.render('filter', {
+            movies: movies
+        });
+    }
+    catch(err){
+        console.log('*********Error in movie filter', err);
         return;
     }
 }

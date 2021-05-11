@@ -1,0 +1,11 @@
+<div>
+    <ul>
+        <% for(movie of locals.movies){ %>
+            <li>
+                <p>Rating: <%= movie.rating %></p>
+                <a href="/movie/open-movie/?id=<%= movie._id %>"><%= movie.name %></a>
+                <img src="<%= movie.picture %>" alt="<%= movie.name %>" width="100">
+            </li>
+        <% } %>
+    </ul>
+</div>

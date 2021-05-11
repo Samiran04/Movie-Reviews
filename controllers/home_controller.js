@@ -14,8 +14,6 @@ module.exports.home = async function(req, res){
         return b.rating - a.rating;
     });
 
-    //await Review.findByIdAndDelete('60942350f29cd228648b6b00');
-
     if(req.user)
     {
         email = req.user.email;

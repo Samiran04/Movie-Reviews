@@ -31,3 +31,12 @@
         <% } %>
     </ul>
 </div>
+
+<div>
+    <form action="/movie/filter" method="POST">
+        <% for(let gen of locals.genres){ %>
+            <label ><%= gen %><input type="checkbox" name="genres" value="<%= gen %>"></label>
+        <% } %>
+        <input type="submit" value="Filter">
+    </form>
+</div>
